@@ -6,19 +6,19 @@ import settings
 GOOGLE_CLOUD_VISION_API_URL = 'https://vision.googleapis.com/v1/images:annotate?key='
 
 API_KEY = settings.AP
-#API_KEY = "AIzaSyB46NoyoqwjmTfpVLCabb1Tn_MAkoDsaj0"
 
-# APIを呼び、認識結果をjson型で返す
 def request_cloud_vison_api(image_base64):
     api_url = GOOGLE_CLOUD_VISION_API_URL + API_KEY
     req_body = json.dumps({
-        'requests': [{
-            'image': {
-                'content': image_base64.decode('utf-8') # jsonに変換するためにstring型に変換する
+        "requests": [{
+            "image": {
+                "content": image_base64.decode("utf-8")
             },
-            'features': [{
-                'type': 'TEXT_DETECTION', # ここを変更することで分析内容を変更できる
-                'maxResults': 10,
+            "features": [{
+                # TEXT_DETECTION
+                # DOCUMENT_TEXT_DETECTION
+                "type": "TEXT_DETECTION",
+               "maxResults": 10,
             }]
         }]
     })
@@ -44,3 +44,6 @@ text_r = result["responses"][0]["fullTextAnnotation"]["text"]
 
 
 print(text_r)
+
+input("何かキーを押すと終了します")
+
