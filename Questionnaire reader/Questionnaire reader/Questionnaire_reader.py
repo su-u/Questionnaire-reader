@@ -1,11 +1,13 @@
 import requests
 import base64
 import json
-import settings
+import configparser
 
 GOOGLE_CLOUD_VISION_API_URL = 'https://vision.googleapis.com/v1/images:annotate?key='
 
-API_KEY = settings.AP
+inifile = configparser.ConfigParser()
+inifile.read("./config.ini", "utf-8")
+API_KEY = inifile.get("token", "GOOGLE_API_TOKEN")
 
 def request_cloud_vison_api(image_base64):
     api_url = GOOGLE_CLOUD_VISION_API_URL + API_KEY
@@ -31,16 +33,20 @@ def img_to_base64(filepath):
     return base64.b64encode(img_byte)
 
 def main():
-    img_base64 = img_to_base64('./手書き文字サンプル.jpg')
+    img_base64 = img_to_base64('./iroha.png')
     result = request_cloud_vison_api(img_base64)
 
-    print("{}".format(json.dumps(result, indent=4)))
+    if("error" in result):
+        print("{}".format(json.dumps(result, indent=4)))
+    else:
+        text_r = result["responses"][0]["fullTextAnnotation"]["text"]
+        print(text_r)
+    #print("{}".format(json.dumps(result, indent=4)))
 
 
-    text_r = result["responses"][0]["fullTextAnnotation"]["text"]
-    print(text_r)
+    #text_r = result["responses"][0]["fullTextAnnotation"]["text"]
+    #print(text_r)
 
-    input("何かキーを押すと終了します")
 
 if __name__ == "__main__":
     main()
