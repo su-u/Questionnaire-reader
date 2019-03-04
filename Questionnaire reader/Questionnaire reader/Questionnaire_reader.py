@@ -32,7 +32,7 @@ def img_to_base64(filepath):
     return base64.b64encode(img_byte)
 
 # 文字認識させたい画像を./img.pngとする
-img_base64 = img_to_base64('./img.png')
+img_base64 = img_to_base64('./手書き文字サンプル.jpg')
 result = request_cloud_vison_api(img_base64)
 
 #認識した文字の位置など、すべての情報を出力
@@ -40,4 +40,7 @@ print("{}".format(json.dumps(result, indent=4)))
 
 #認識した文字のみを出力
 text_r = result["responses"][0]["fullTextAnnotation"]["text"]
+
+
+
 print(text_r)
