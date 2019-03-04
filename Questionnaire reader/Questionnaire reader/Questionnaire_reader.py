@@ -3,6 +3,7 @@ import base64
 import json
 import configparser
 import Logger
+import Questionnaire
 
 log = Logger.Logger()
 GOOGLE_CLOUD_VISION_API_URL = 'https://vision.googleapis.com/v1/images:annotate?key='
