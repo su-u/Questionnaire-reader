@@ -25,25 +25,22 @@ def request_cloud_vison_api(image_base64):
     res = requests.post(api_url, data=req_body)
     return res.json()
 
-# 画像読み込み
 def img_to_base64(filepath):
     with open(filepath, 'rb') as img:
         img_byte = img.read()
     return base64.b64encode(img_byte)
 
-# 文字認識させたい画像を./img.pngとする
-img_base64 = img_to_base64('./手書き文字サンプル.jpg')
-result = request_cloud_vison_api(img_base64)
+def main():
+    img_base64 = img_to_base64('./手書き文字サンプル.jpg')
+    result = request_cloud_vison_api(img_base64)
 
-#認識した文字の位置など、すべての情報を出力
-print("{}".format(json.dumps(result, indent=4)))
-
-#認識した文字のみを出力
-text_r = result["responses"][0]["fullTextAnnotation"]["text"]
+    print("{}".format(json.dumps(result, indent=4)))
 
 
+    text_r = result["responses"][0]["fullTextAnnotation"]["text"]
+    print(text_r)
 
-print(text_r)
+    input("何かキーを押すと終了します")
 
-input("何かキーを押すと終了します")
-
+if __name__ == "__main__":
+    main()
