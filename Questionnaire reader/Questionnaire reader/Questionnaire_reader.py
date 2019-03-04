@@ -5,12 +5,8 @@ import configparser
 
 GOOGLE_CLOUD_VISION_API_URL = 'https://vision.googleapis.com/v1/images:annotate?key='
 
-inifile = configparser.ConfigParser()
-inifile.read("./config.ini", "utf-8")
-API_KEY = inifile.get("token", "GOOGLE_API_TOKEN")
-
-def request_cloud_vison_api(image_base64):
-    api_url = GOOGLE_CLOUD_VISION_API_URL + API_KEY
+def request_cloud_vison_api(image_base64, api_key):
+    api_url = GOOGLE_CLOUD_VISION_API_URL + api_key
     req_body = json.dumps({
         "requests": [{
             "image": {
@@ -33,20 +29,24 @@ def img_to_base64(filepath):
     return base64.b64encode(img_byte)
 
 def main():
+    API_KEY = ""
+    inifile = configparser.ConfigParser()
+
+    try:
+        inifile.read("./config.ini", "utf-8")
+    except:
+        print("設定ファイルを読み込むことができませんでした。")
+    else:
+        API_KEY = inifile.get("token", "GOOGLE_API_TOKEN")
+
     img_base64 = img_to_base64('./iroha.png')
-    result = request_cloud_vison_api(img_base64)
+    result = request_cloud_vison_api(img_base64, API_KEY)
 
     if("error" in result):
         print("{}".format(json.dumps(result, indent=4)))
     else:
         text_r = result["responses"][0]["fullTextAnnotation"]["text"]
         print(text_r)
-    #print("{}".format(json.dumps(result, indent=4)))
-
-
-    #text_r = result["responses"][0]["fullTextAnnotation"]["text"]
-    #print(text_r)
-
 
 if __name__ == "__main__":
     main()
