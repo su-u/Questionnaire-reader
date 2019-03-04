@@ -38,8 +38,7 @@ def main():
     try:
         inifile.read("./config.ini", "utf-8")
     except:
-        print("設定ファイルを読み込むことができませんでした。")
-        log.warn("設定ファイルを読み込むことができませんでした。")
+        log.warn("cant load \"conig.ini\"")
     else:
         API_KEY = inifile.get("token", "GOOGLE_API_TOKEN")
         log.info("loaded \"config.ini\"")
