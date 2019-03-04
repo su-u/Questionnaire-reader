@@ -85,7 +85,7 @@ celerybeat-schedule
 
 # SageMath parsed files
 *.sage.py
-
+settings.py
 # Environments
 .env
 .venv
@@ -112,3 +112,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+System-ca5b4fbc7e94.json
