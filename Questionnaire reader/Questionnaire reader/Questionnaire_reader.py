@@ -2,7 +2,9 @@ import requests
 import base64
 import json
 import configparser
+import Logger
 
+log = Logger.Logger()
 GOOGLE_CLOUD_VISION_API_URL = 'https://vision.googleapis.com/v1/images:annotate?key='
 
 def request_cloud_vison_api(image_base64, api_key):
@@ -29,6 +31,7 @@ def img_to_base64(filepath):
     return base64.b64encode(img_byte)
 
 def main():
+    log 
     API_KEY = ""
     inifile = configparser.ConfigParser()
 
@@ -36,8 +39,10 @@ def main():
         inifile.read("./config.ini", "utf-8")
     except:
         print("設定ファイルを読み込むことができませんでした。")
+        log.warn("設定ファイルを読み込むことができませんでした。")
     else:
         API_KEY = inifile.get("token", "GOOGLE_API_TOKEN")
+        log.info("loaded \"config.ini\"")
 
     img_base64 = img_to_base64('./iroha.png')
     result = request_cloud_vison_api(img_base64, API_KEY)

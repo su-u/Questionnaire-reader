@@ -14,7 +14,7 @@ class Logger:
         self.logger.addHandler(handler)
 
         # file
-        handler = handlers.RotatingFileHandler(filename = 'your_log_path.log',
+        handler = handlers.RotatingFileHandler(filename = 'log\log.log',
                                                maxBytes = 1048576,
                                                backupCount = 3)
         handler.setLevel(DEBUG)

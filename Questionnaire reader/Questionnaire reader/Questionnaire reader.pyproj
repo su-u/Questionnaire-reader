@@ -22,10 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Questionnaire_reader.py" />
-    <Compile Include="settings.py">
+    <Compile Include="Logger.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Questionnaire_reader.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
