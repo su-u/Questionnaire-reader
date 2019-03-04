@@ -25,6 +25,9 @@
     <Compile Include="Logger.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Questionnaire.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Questionnaire_reader.py" />
   </ItemGroup>
   <ItemGroup>

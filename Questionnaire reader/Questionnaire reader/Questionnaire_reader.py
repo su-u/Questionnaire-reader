@@ -54,4 +54,5 @@ def main():
         print(text_r)
 
 if __name__ == "__main__":
-    main()
+    #main()
+    Questionnaire.mm()
