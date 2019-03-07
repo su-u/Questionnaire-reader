@@ -20,11 +20,13 @@ class Questionnaire(object):
         for i in range(0, len(imp_1) - 1, 2):
             self.data.append(dict(id=imp_1[i], comment=imp_1[i + 1]))
             
-
+        for i in range(0, len(imp_2) - 1, 2):
+            self.sentence.append(dict(id=imp_2[i], comment=imp_2[i + 1]))
         #print(imp_1)
         #print(imp_2)
 
         print(self.data)
+        print(self.sentence)
 
 
 
