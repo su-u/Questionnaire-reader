@@ -44,7 +44,7 @@ def main():
         API_KEY = inifile.get("token", "GOOGLE_API_TOKEN")
         log.info("loaded \"config.ini\"")
 
-    img_base64 = img_to_base64('./iroha.png')
+    img_base64 = img_to_base64('./IMG_20190309_0001.png')
     result = request_cloud_vison_api(img_base64, API_KEY)
 
     if("error" in result):
@@ -54,5 +54,5 @@ def main():
         print(text_r)
 
 if __name__ == "__main__":
-    #main()
-    Questionnaire.mm()
+    main()
+    #Questionnaire.mm()
